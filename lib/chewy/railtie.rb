@@ -24,7 +24,8 @@ module Chewy
     module MigrationStrategy
       extend ActiveSupport::Concern
       included do
-        alias_method_chain :migrate, :chewy
+        alias_method :migrate_without_chewy, :migrate
+        alias_method :migrate, :migrate_with_chewy
       end
 
       def migrate_with_chewy(*args)
